@@ -256,15 +256,14 @@
   </section>
 
 <!-- Guest Speakers -->
-<section id="speakers" class="py-20 bg-gray-50 text-center relative">
+<section id="speakers" class="py-20 bg-gray-50 text-center">
   <h2 class="text-3xl font-bold text-indigo-600 mb-12">Guest Speakers</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 px-8">
 
-  <!-- Slider container -->
-  <div id="speakerSlider" class="flex gap-6 overflow-x-auto md:overflow-visible px-6 scroll-smooth">
     <!-- Feruza Rashidova -->
-    <div class="speaker-card flex-shrink-0 bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
       <img src="img/rasidova.jpg" alt="Feruza Rashidova" class="w-full h-56 object-cover">
-      <div class="speaker-meta text-left p-5">
+      <div class="p-5">
         <h3 class="text-lg font-semibold text-gray-800">Dr. Feruza Rashidova</h3>
         <p class="text-indigo-600 font-medium text-sm">Project Management & Leadership Expert</p>
         <p class="mt-2 text-gray-600 text-sm">
@@ -274,9 +273,9 @@
     </div>
 
     <!-- Sherzodbek Norboev -->
-    <div class="speaker-card flex-shrink-0 bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
       <img src="img/norboyev.JPG" alt="Sherzodbek Norboev" class="w-full h-56 object-cover">
-      <div class="speaker-meta text-left p-5">
+      <div class="p-5">
         <h3 class="text-lg font-semibold text-gray-800">Sherzodbek Norboev</h3>
         <p class="text-indigo-600 font-medium text-sm">HR & L&D Consultant</p>
         <p class="mt-2 text-gray-600 text-sm">
@@ -286,9 +285,9 @@
     </div>
 
     <!-- Nuriddin Samatov -->
-    <div class="speaker-card flex-shrink-0 bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
       <img src="img/nuriddin.jpg" alt="Nuriddin Samatov" class="w-full h-56 object-cover">
-      <div class="speaker-meta text-left p-5">
+      <div class="p-5">
         <h3 class="text-lg font-semibold text-gray-800">Nuriddin Samatov</h3>
         <p class="text-indigo-600 font-medium text-sm">Environmental & Innovation Specialist</p>
         <p class="mt-2 text-gray-600 text-sm">
@@ -298,9 +297,9 @@
     </div>
 
     <!-- Jasur Babadjanov -->
-    <div class="speaker-card flex-shrink-0 bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
       <img src="img/jasur.jpg" alt="Jasur Babadjanov" class="w-full h-56 object-cover">
-      <div class="speaker-meta text-left p-5">
+      <div class="p-5">
         <h3 class="text-lg font-semibold text-gray-800">Jasur Babadjanov</h3>
         <p class="text-indigo-600 font-medium text-sm">Lecturer & Vice-Dean at Central Asian University</p>
         <p class="mt-2 text-gray-600 text-sm">
@@ -310,9 +309,9 @@
     </div>
 
     <!-- Aziz Nishanov -->
-    <div class="speaker-card flex-shrink-0 bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
       <img src="img/aziz.jpg" alt="Aziz Nishanov" class="w-full h-56 object-cover">
-      <div class="speaker-meta text-left p-5">
+      <div class="p-5">
         <h3 class="text-lg font-semibold text-gray-800">Aziz Nishanov</h3>
         <p class="text-indigo-600 font-medium text-sm">Operations & Events Manager, Webster University</p>
         <p class="mt-2 text-gray-600 text-sm">
@@ -320,14 +319,10 @@
         </p>
       </div>
     </div>
+
   </div>
-
-  <!-- Arrows only for mobile -->
-  <button class="slider-btn left" aria-label="Previous" onclick="slideSpeakers(-1)">&#10094;</button>
-  <button class="slider-btn right" aria-label="Next" onclick="slideSpeakers(1)">&#10095;</button>
-
-  <p class="text-gray-500 text-sm mt-6 md:hidden">Swipe left or right to explore</p>
 </section>
+
 
 
 
@@ -501,36 +496,6 @@
     updateTimer();
     setInterval(updateTimer, 1000);
 
-// --- Speaker slider (mobile only) ---
-const cards = document.querySelectorAll('#speakerSlider .speaker-card');
-let current = 0;
-let autoSlide;
-
-function showSpeaker(i) {
-  cards.forEach((card, idx) => {
-    if (window.innerWidth < 768) {
-      card.style.display = idx === i ? 'block' : 'none';
-    } else {
-      card.style.display = 'block';
-    }
-  });
-}
-
-function slideSpeakers(dir) {
-  current = (current + dir + cards.length) % cards.length;
-  showSpeaker(current);
-}
-
-function startAutoSlide() {
-  clearInterval(autoSlide);
-  if (window.innerWidth < 768) {
-    autoSlide = setInterval(() => slideSpeakers(1), 10000);
-  }
-}
-
-showSpeaker(0);
-startAutoSlide();
-window.addEventListener('resize', startAutoSlide);
 
 
     // --- Optional parallax for stickers (cosmetic) ---
