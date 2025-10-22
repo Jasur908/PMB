@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PMB – Project Management Basics</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --g1: #4f46e5;
+      --g2: #7c3aed;
+      --g3: #06b6d4;
+      --purple: #4f46e5;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(120deg, var(--g1), var(--g2), var(--g3));
+      background-size: 300% 300%;
+      animation: gradientMove 12s ease infinite;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% 50%
+      }
+
+      50% {
+        background-position: 100% 50%
+      }
+
+      100% {
+        background-position: 0% 50%
+      }
+    }
+
+    .card-bg {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(6px)
+    }
+
+    .card-plain {
+      background: white
+    }
+
+    header {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.35));
+      backdrop-filter: blur(6px)
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all .7s ease
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    /* ======================
+       SPEAKERS ADAPTIVE STYLES
+       ====================== */
+    #speakerSlider {
+      display: flex;
+      transition: transform 0.6s ease;
+    }
+
+    .speaker-card {
+      flex: 0 0 100%;
+      width: 100%;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 8px 26px rgba(15, 23, 42, 0.06);
+      overflow: hidden;
+    }
+
+    .speaker-card img {
+      width: 100%;
+      height: 80vh;
+      object-fit: cover;
+    }
+
+    .speaker-meta {
+      padding: 18px;
+      text-align: center;
+    }
+
+    .slider-btn {
+      display: none;
+    }
+
+    @media (max-width: 767px) {
+      .slider-btn {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        border-radius: 9999px;
+        align-items: center;
+        justify-content: center;
+        background: rgba(79, 70, 229, 0.95);
+        color: white;
+        border: none;
+        box-shadow: 0 10px 30px rgba(79, 70, 229, 0.18);
+        cursor: pointer;
+        z-index: 50;
+        opacity: 0.9;
+      }
+
+      .slider-btn.left {
+        left: 10px;
+      }
+
+      .slider-btn.right {
+        right: 10px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      #speakerSlider {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+        transform: none !important;
+      }
+
+      .speaker-card img {
+        height: 240px;
+      }
+
+      .slider-btn {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="text-gray-900">
+
+  <!-- <div id="toast">Message</div> -->
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-white shadow">
+          <span class="text-indigo-600 font-bold">PMB</span>
+        </div>
+        <div>
+          <div class="text-white font-bold">Personal Management Basics</div>
+          <div class="text-xs text-white/80">6-month online training</div>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6 text-white/90">
+        <a href="#hero" class="hover:underline">Home</a>
+        <a href="#about" class="hover:underline">About</a>
+        <a href="#program" class="hover:underline">Program</a>
+        <a href="#speakers" class="hover:underline">Speakers</a>
+        <a href="#journey" class="hover:underline">Transformation</a>
+        <a href="#eligibility" class="hover:underline">Eligibility</a>
+        <a href="#apply" class="bg-white text-indigo-700 px-4 py-2 rounded-lg font-semibold shadow">Apply Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero" class="py-20 text-center text-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <h1 class="text-5xl font-extrabold leading-tight fade-in">
+        Learn to lead. Learn to deliver. <br>
+        <span class="text-yellow-300">Transform with Personal Management Basics.</span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- About (centered) -->
+  <section id="about" class="py-14">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="card-bg rounded-2xl p-8 text-center fade-in">
+        <h2 class="text-2xl font-bold text-indigo-700">About PMB</h2>
+        <p class="mt-3 text-gray-700 max-w-3xl mx-auto">6 month online training program based on International PMP
+          principles and adapted to youth who is passionate about growth and building community. Here you will improve
+          your leadership, communication, 21-century skills and peoject management, with the help of mentors support and
+          practical assignments. We focus on turning your ideas into peojects.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Inside -->
+  <section id="inside" class="py-12 text-center">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="card-bg rounded-2xl p-8 shadow fade-in">
+        <h3 class="text-2xl font-bold text-indigo-700 mb-4">What's Inside</h3>
+        <ul class="space-y-3 text-gray-700">
+          <li>📚 21st-century skills training</li>
+          <li>🗣 Mentoring & community support</li>
+          <li>💼 Hands-on mini-projects & reviews</li>
+          <li>🌍 Networking & global perspective</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Mission (centered & same pleasant color) -->
+  <section id="mission" class="py-10">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="card-bg rounded-2xl p-8 text-center fade-in">
+        <h3 class="text-2xl font-bold text-indigo-700">Our Mission</h3>
+        <p class="mt-3 text-gray-700 max-w-3xl mx-auto">To create an environment for young people where they learn not
+          just “project management” but leadership in life, purpose, service, responsibility, and awareness, using
+          adapted PMP principles and experienced mentors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program Structure (full) -->
+  <section id="program" class="py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <h3 class="text-3xl font-bold text-white text-center mb-8 fade-in">Main blocks</h3>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-xl card-plain shadow fade-in">
+          <h4 class="font-semibold mb-2">💡 21st Century Skills</h4>
+          <p>Creativity, critical thinking, collaboration, and digital literacy.</p>
+        </div>
+        <div class="p-6 rounded-xl card-plain shadow fade-in">
+          <h4 class="font-semibold mb-2">🕒 Time Management & Mission</h4>
+          <p>Set priorities, create mission-driven plans, manage time effectively.</p>
+        </div>
+        <div class="p-6 rounded-xl card-plain shadow fade-in">
+          <h4 class="font-semibold mb-2">⚖ Risk & Resource Management</h4>
+          <p>Identify risks, plan resources and handle constraints.</p>
+        </div>
+        <div class="p-6 rounded-xl card-plain shadow fade-in">
+          <h4 class="font-semibold mb-2">🧩 Problem Solving & Quality</h4>
+          <p>Approach problems, validate solutions, maintain standards.</p>
+        </div>
+        <div class="p-6 rounded-xl card-plain shadow fade-in">
+          <h4 class="font-semibold mb-2">🤝 Empathy & Communication</h4>
+          <p>Build teams, communicate clearly, lead with empathy.</p>
+        </div>
+        <div class="p-6 rounded-xl card-plain shadow fade-in">
+          <h4 class="font-semibold mb-2">🌱 Sustainability & Resilience</h4>
+          <p>Create projects that last and adapt to change.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPEAKERS SECTION -->
+  <section id="speakers" class="py-20 bg-gray-50 text-center relative overflow-hidden">
+    <h2 class="text-3xl font-bold text-indigo-600 mb-12">Guest Speakers</h2>
+
+    <div id="speakerSlider">
+
+      <div class="speaker-card">
+        <img src="img/rasidova.jpg" alt="Feruza Rashidova">
+        <div class="speaker-meta">
+          <h3 class="text-lg font-semibold text-gray-800">Dr. Feruza Rashidova</h3>
+          <p class="text-indigo-600 font-medium text-sm">Project Management & Leadership Expert</p>
+          <p class="mt-3 text-gray-600 text-sm">
+            Experienced mentor inspiring young leaders through innovative education and project-based learning.
+          </p>
+        </div>
+      </div>
+
+      <div class="speaker-card">
+        <img src="img/norboyev.JPG" alt="Sherzodbek Norboev">
+        <div class="speaker-meta">
+          <h3 class="text-lg font-semibold text-gray-800">Sherzodbek Norboev</h3>
+          <p class="text-indigo-600 font-medium text-sm">HR & L&D Consultant</p>
+          <p class="mt-3 text-gray-600 text-sm">
+            Certified HR professional with international experience in leadership and organizational development.
+          </p>
+        </div>
+      </div>
+
+      <div class="speaker-card">
+        <img src="img/nuriddin.jpg" alt="Nuriddin Samatov">
+        <div class="speaker-meta">
+          <h3 class="text-lg font-semibold text-gray-800">Nuriddin Samatov</h3>
+          <p class="text-indigo-600 font-medium text-sm">Environmental & Innovation Specialist</p>
+          <p class="mt-3 text-gray-600 text-sm">
+            Researcher in green innovation and ICT sustainability focusing on climate-smart development.
+          </p>
+        </div>
+      </div>
+
+      <div class="speaker-card">
+        <img src="img/jasur.jpg" alt="Jasur Babadjanov">
+        <div class="speaker-meta">
+          <h3 class="text-lg font-semibold text-gray-800">Jasur Babadjanov</h3>
+          <p class="text-indigo-600 font-medium text-sm">Lecturer & Vice-Dean, Central Asian University</p>
+          <p class="mt-3 text-gray-600 text-sm">
+            Dedicated to healthcare education and youth leadership.
+          </p>
+        </div>
+      </div>
+
+      <div class="speaker-card">
+        <img src="img/aziz.jpg" alt="Aziz Nishanov">
+        <div class="speaker-meta">
+          <h3 class="text-lg font-semibold text-gray-800">Aziz Nishanov</h3>
+          <p class="text-indigo-600 font-medium text-sm">Operations & Events Manager, Webster University</p>
+          <p class="mt-3 text-gray-600 text-sm">
+            Skilled manager fostering youth engagement through leadership and innovation.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <button class="slider-btn left" aria-label="Previous" onclick="changeSpeaker(-1)">&#10094;</button>
+    <button class="slider-btn right" aria-label="Next" onclick="changeSpeaker(1)">&#10095;</button>
+  </section>
+
+  <!-- Before & After -->
+  <section id="journey" class="py-16 text-center">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="space-y-8">
+        <div class="bg-white p-6 rounded-xl shadow fade-in">
+          <h4 class="text-2xl font-bold text-indigo-700 mb-4">🚀 Before PMB</h4>
+          <ul class="space-y-2 text-gray-800">
+            <li>😵‍💫 You have no prior leadership experience</li>
+            <li>😓 You’re unsure how to start leading</li>
+            <li>💡 You have ideas but no clear direction</li>
+            <li>⚡️ You’re eager to grow and make impact</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow fade-in">
+          <h4 class="text-2xl font-bold text-indigo-700 mb-4">🌟 After PMB</h4>
+          <ul class="space-y-2 text-gray-800">
+            <li>💡 Confident — you lead and inspire others</li>
+            <li>📈 Skilled — you turn ideas into measurable results</li>
+            <li>🤝 Connected — part of a global youth network</li>
+            <li>🚀 Project-ready — you deliver real impact</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program Outcomes -->
+  <section id="program" class="py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      <h3 class="text-3xl font-bold text-white text-center mb-10 fade-in">Program Outcomes</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="card-bg p-6 rounded-xl shadow fade-in">
+          <h4 class="font-semibold mb-2">🧭✨ Basic Understanding of Leadership</h4>
+          <p class="text-gray-700 text-sm">
+            Gain a clear idea of what leadership means in real life.
+          </p>
+        </div>
+
+        <div class="card-bg p-6 rounded-xl shadow fade-in">
+          <h4 class="font-semibold mb-2">💬🤝🌍 Better Communication & Teamwork</h4>
+          <p class="text-gray-700 text-sm">
+            Practice listening, speaking, and working in teams with people from different backgrounds.
+          </p>
+        </div>
+
+        <div class="card-bg p-6 rounded-xl shadow fade-in">
+          <h4 class="font-semibold mb-2">📋🚀👥 Small Project Experience</h4>
+          <p class="text-gray-700 text-sm">
+            Start from leading a small task or project with support from peers and mentors.
+          </p>
+        </div>
+
+        <div class="card-bg p-6 rounded-xl shadow fade-in">
+          <h4 class="font-semibold mb-2">🕵️‍♀️💡🧠 Problem Awareness & Action Steps</h4>
+          <p class="text-gray-700 text-sm">
+            Learn to notice problems and use critical thinking on possible solutions.
+          </p>
+        </div>
+
+        <div class="card-bg p-6 rounded-xl shadow fade-in">
+          <h4 class="font-semibold mb-2">🌐🤗💫 Connection with Other Young Leaders</h4>
+          <p class="text-gray-700 text-sm">
+            Build friendships and stay in touch with peers from other countries.
+          </p>
+        </div>
+
+        <div class="card-bg p-6 rounded-xl shadow fade-in">
+          <h4 class="font-semibold mb-2">🎤🌟📖 Inspired by Alumni Stories</h4>
+          <p class="text-gray-700 text-sm">
+            Hear real examples from alumni and feel motivated to keep learning and growing.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Eligibility -->
+  <section id="eligibility" class="py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold text-white mb-8 fade-in">Eligibility</h3>
+      <div class="grid md:grid-cols-4 gap-6">
+
+        <div class="card-bg p-6 rounded-xl fade-in">
+          <h4 class="font-semibold mb-2">🎓 Age</h4>
+          <p>16–25 years old youth with no prior experience in leadership training.</p>
+        </div>
+
+        <div class="card-bg p-6 rounded-xl fade-in">
+          <h4 class="font-semibold mb-2">🌍Language Requirements</h4>
+          <p>Comfortable communicating in English – B1–B2 levels.</p>
+        </div>
+
+        <div class="card-bg p-6 rounded-xl fade-in">
+          <h4 class="font-semibold mb-2">🧠 Mindset</h4>
+          <p>Curious, motivated, and ready to learn.</p>
+        </div>
+
+        <div class="card-bg p-6 rounded-xl fade-in">
+          <h4 class="font-semibold mb-2">💰 Program Fee</h4>
+          <p>$20 per month • 6-month online training.</p>
+        </div>
+
+      </div>
+      <p class="text-white/90 mt-6 italic">“Everyone starts somewhere — and PMB is your starting point in growth”</p>
+    </div>
+  </section>
+
+  <!-- Apply (single centered card, everything inside) -->
+  <section id="apply" class="py-20">
+    <div class="max-w-5xl mx-auto px-6 fade-in">
+      <div class="card-bg rounded-2xl p-8 text-center">
+        <h3 class="text-3xl font-bold text-indigo-700 mb-2">Ready to Join PMB?</h3>
+        <p class="text-gray-700 mb-6">Take your first step towards leadership and impact.</p>
+
+        <!-- Apply button -->
+        <a href="https://forms.gle/5QyE4fJR5Ldi7nKB6" target="_blank"
+          class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-semibold shadow inline-block mb-6 transition">
+          Apply Now
+        </a>
+
+        <!-- Countdown inside same card -->
+        <div id="countdownTimer" class="text-2xl font-bold text-indigo-700 mb-2"></div>
+        <p class="text-sm text-gray-700 mb-4">Time left to apply • Deadline: October 20, 2025</p>
+
+        <!-- Social links inside same card -->
+        <div class="mt-2 mb-2">
+          <a href="https://www.instagram.com/pmb.yldp_official?igsh=NzRzY2Z1bHlxank3" target="_blank"
+            class="text-indigo-600 hover:underline mx-2">Instagram</a>
+          <span class="text-gray-400">•</span>
+          <a href="#" class="text-indigo-600 hover:underline mx-2">LinkedIn</a>
+          <span class="text-gray-400">•</span>
+          <a href="https://t.me/pmpprepforyouthbyyldp" target="_blank"
+            class="text-indigo-600 hover:underline mx-2">Telegram</a>
+        </div>
+
+
+        <!-- © inside the same card -->
+        <p class="text-gray-500 text-sm mt-4">© 2025 PMB • Project Management Basics</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // --- Fade-in on scroll ---
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+    // --- Countdown Timer (inside apply card) ---
+    const deadline = new Date('October 30, 2025 23:59:59').getTime();
+    const timerEl = document.getElementById('countdownTimer');
+    function updateTimer() {
+      const now = Date.now();
+      const diff = deadline - now;
+      if (diff <= 0) { timerEl.textContent = '0d 0h 0m 0s'; return; }
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+      timerEl.textContent = `${d}d ${h}h ${m}m ${s}s`;
+    }
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    // --- Speaker Slider (mobile only) ---
+    const slider = document.querySelector('.grid.md\\:grid-cols-3.lg\\:grid-cols-5');
+    const cards = document.querySelectorAll('#speakers .bg-white');
+    const leftBtn = document.querySelector('.slider-btn.left');
+    const rightBtn = document.querySelector('.slider-btn.right');
+    let index = 0;
+    let autoSlide;
+
+    function showSpeaker(i) {
+      cards.forEach((card, idx) => {
+        card.style.display = (window.innerWidth < 768) ? (idx === i ? 'block' : 'none') : 'block';
+      });
+    }
+
+    function nextSpeaker(dir = 1) {
+      index = (index + dir + cards.length) % cards.length;
+      showSpeaker(index);
+    }
+
+    function startAutoSlide() {
+      if (window.innerWidth < 768) {
+        clearInterval(autoSlide);
+        autoSlide = setInterval(() => nextSpeaker(1), 10000);
+      } else {
+        clearInterval(autoSlide);
+      }
+    }
+
+    leftBtn?.addEventListener('click', () => nextSpeaker(-1));
+    rightBtn?.addEventListener('click', () => nextSpeaker(1));
+    window.addEventListener('resize', startAutoSlide);
+
+    showSpeaker(0);
+    startAutoSlide();
+
+    // --- Optional parallax for stickers (cosmetic) ---
+    document.addEventListener('mousemove', e => {
+      document.querySelectorAll('.sticker').forEach((el, i) => {
+        const speed = (i + 1) * 0.02;
+        const x = (window.innerWidth / 2 - e.clientX) * speed;
+        const y = (window.innerHeight / 2 - e.clientY) * speed;
+        el.style.transform = `translate(${x}px, ${y}px)`;
+      });
+    });
+
+    // --- Toast helper (optional) ---
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3200);
+    }
+  </script>
+
+</body>
+
+</html>
