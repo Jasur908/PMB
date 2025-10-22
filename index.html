@@ -255,72 +255,64 @@
     </div>
   </section>
 
-  <!-- SPEAKERS SECTION -->
-  <section id="speakers" class="py-20 bg-gray-50 text-center relative overflow-hidden">
-    <h2 class="text-3xl font-bold text-indigo-600 mb-12">Guest Speakers</h2>
+<!-- Guest Speakers -->
+<section id="speakers" class="py-20 bg-gray-50 text-center relative">
+  <h2 class="text-3xl font-bold text-indigo-600 mb-12">Guest Speakers</h2>
 
-    <div id="speakerSlider">
-
-      <div class="speaker-card">
-        <img src="img/rasidova.jpg" alt="Feruza Rashidova">
-        <div class="speaker-meta">
-          <h3 class="text-lg font-semibold text-gray-800">Dr. Feruza Rashidova</h3>
-          <p class="text-indigo-600 font-medium text-sm">Project Management & Leadership Expert</p>
-          <p class="mt-3 text-gray-600 text-sm">
-            Experienced mentor inspiring young leaders through innovative education and project-based learning.
-          </p>
-        </div>
-      </div>
-
-      <div class="speaker-card">
-        <img src="img/norboyev.JPG" alt="Sherzodbek Norboev">
-        <div class="speaker-meta">
-          <h3 class="text-lg font-semibold text-gray-800">Sherzodbek Norboev</h3>
-          <p class="text-indigo-600 font-medium text-sm">HR & L&D Consultant</p>
-          <p class="mt-3 text-gray-600 text-sm">
-            Certified HR professional with international experience in leadership and organizational development.
-          </p>
-        </div>
-      </div>
-
-      <div class="speaker-card">
-        <img src="img/nuriddin.jpg" alt="Nuriddin Samatov">
-        <div class="speaker-meta">
-          <h3 class="text-lg font-semibold text-gray-800">Nuriddin Samatov</h3>
-          <p class="text-indigo-600 font-medium text-sm">Environmental & Innovation Specialist</p>
-          <p class="mt-3 text-gray-600 text-sm">
-            Researcher in green innovation and ICT sustainability focusing on climate-smart development.
-          </p>
-        </div>
-      </div>
-
-      <div class="speaker-card">
-        <img src="img/jasur.jpg" alt="Jasur Babadjanov">
-        <div class="speaker-meta">
-          <h3 class="text-lg font-semibold text-gray-800">Jasur Babadjanov</h3>
-          <p class="text-indigo-600 font-medium text-sm">Lecturer & Vice-Dean, Central Asian University</p>
-          <p class="mt-3 text-gray-600 text-sm">
-            Dedicated to healthcare education and youth leadership.
-          </p>
-        </div>
-      </div>
-
-      <div class="speaker-card">
-        <img src="img/aziz.jpg" alt="Aziz Nishanov">
-        <div class="speaker-meta">
-          <h3 class="text-lg font-semibold text-gray-800">Aziz Nishanov</h3>
-          <p class="text-indigo-600 font-medium text-sm">Operations & Events Manager, Webster University</p>
-          <p class="mt-3 text-gray-600 text-sm">
-            Skilled manager fostering youth engagement through leadership and innovation.
-          </p>
-        </div>
+  <!-- Обёртка для слайдера -->
+  <div id="speakerSlider" class="flex overflow-hidden justify-center items-stretch relative max-w-md mx-auto md:grid md:grid-cols-3 lg:grid-cols-5 md:gap-10">
+    <!-- Каждый спикер -->
+    <div class="speaker-card bg-white rounded-2xl shadow-lg overflow-hidden transition min-w-full md:min-w-0">
+      <img src="img/rasidova.jpg" alt="Feruza Rashidova" class="w-full h-56 object-cover">
+      <div class="p-5">
+        <h3 class="text-lg font-semibold text-gray-800">Dr. Feruza Rashidova</h3>
+        <p class="text-indigo-600 font-medium text-sm">Project Management & Leadership Expert</p>
+        <p class="mt-2 text-gray-600 text-sm">Experienced mentor and trainer inspiring young leaders through innovative education and project-based learning.</p>
       </div>
     </div>
 
-    <!-- Navigation buttons -->
-    <button class="slider-btn left" aria-label="Previous" onclick="changeSpeaker(-1)">&#10094;</button>
-    <button class="slider-btn right" aria-label="Next" onclick="changeSpeaker(1)">&#10095;</button>
-  </section>
+    <div class="speaker-card bg-white rounded-2xl shadow-lg overflow-hidden transition min-w-full md:min-w-0">
+      <img src="img/norboyev.JPG" alt="Sherzodbek Norboev" class="w-full h-56 object-cover">
+      <div class="p-5">
+        <h3 class="text-lg font-semibold text-gray-800">Sherzodbek Norboev</h3>
+        <p class="text-indigo-600 font-medium text-sm">HR & L&D Consultant</p>
+        <p class="mt-2 text-gray-600 text-sm">Certified HR professional with international experience in leadership and organizational development.</p>
+      </div>
+    </div>
+
+    <div class="speaker-card bg-white rounded-2xl shadow-lg overflow-hidden transition min-w-full md:min-w-0">
+      <img src="img/nuriddin.jpg" alt="Nuriddin Samatov" class="w-full h-56 object-cover">
+      <div class="p-5">
+        <h3 class="text-lg font-semibold text-gray-800">Nuriddin Samatov</h3>
+        <p class="text-indigo-600 font-medium text-sm">Environmental & Innovation Specialist</p>
+        <p class="mt-2 text-gray-600 text-sm">Researcher in green innovation and ICT sustainability with a focus on climate-smart development.</p>
+      </div>
+    </div>
+
+    <div class="speaker-card bg-white rounded-2xl shadow-lg overflow-hidden transition min-w-full md:min-w-0">
+      <img src="img/jasur.jpg" alt="Jasur Babadjanov" class="w-full h-56 object-cover">
+      <div class="p-5">
+        <h3 class="text-lg font-semibold text-gray-800">Jasur Babadjanov</h3>
+        <p class="text-indigo-600 font-medium text-sm">Lecturer & Vice-Dean at Central Asian University</p>
+        <p class="mt-2 text-gray-600 text-sm">Vice-Dean of Dental School on Clinical Affairs and International Cooperation, dedicated to healthcare education and youth leadership.</p>
+      </div>
+    </div>
+
+    <div class="speaker-card bg-white rounded-2xl shadow-lg overflow-hidden transition min-w-full md:min-w-0">
+      <img src="img/aziz.jpg" alt="Aziz Nishanov" class="w-full h-56 object-cover">
+      <div class="p-5">
+        <h3 class="text-lg font-semibold text-gray-800">Aziz Nishanov</h3>
+        <p class="text-indigo-600 font-medium text-sm">Operations & Events Manager, Webster University</p>
+        <p class="mt-2 text-gray-600 text-sm">Skilled manager with a strong record in organizing impactful events and fostering youth engagement through leadership and innovation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- стрелки -->
+  <button class="slider-btn left" aria-label="Previous" onclick="slideSpeakers(-1)">&#10094;</button>
+  <button class="slider-btn right" aria-label="Next" onclick="slideSpeakers(1)">&#10095;</button>
+</section>
+
 
   <!-- Before & After -->
   <section id="journey" class="py-16 text-center">
@@ -492,40 +484,37 @@
     updateTimer();
     setInterval(updateTimer, 1000);
 
-    // --- Speaker Slider (mobile only) ---
-    const slider = document.querySelector('.grid.md\\:grid-cols-3.lg\\:grid-cols-5');
-    const cards = document.querySelectorAll('#speakers .bg-white');
-    const leftBtn = document.querySelector('.slider-btn.left');
-    const rightBtn = document.querySelector('.slider-btn.right');
-    let index = 0;
-    let autoSlide;
+// --- Speaker slider (mobile only) ---
+const cards = document.querySelectorAll('#speakerSlider .speaker-card');
+let current = 0;
+let autoSlide;
 
-    function showSpeaker(i) {
-      cards.forEach((card, idx) => {
-        card.style.display = (window.innerWidth < 768) ? (idx === i ? 'block' : 'none') : 'block';
-      });
+function showSpeaker(i) {
+  cards.forEach((card, idx) => {
+    if (window.innerWidth < 768) {
+      card.style.display = idx === i ? 'block' : 'none';
+    } else {
+      card.style.display = 'block';
     }
+  });
+}
 
-    function nextSpeaker(dir = 1) {
-      index = (index + dir + cards.length) % cards.length;
-      showSpeaker(index);
-    }
+function slideSpeakers(dir) {
+  current = (current + dir + cards.length) % cards.length;
+  showSpeaker(current);
+}
 
-    function startAutoSlide() {
-      if (window.innerWidth < 768) {
-        clearInterval(autoSlide);
-        autoSlide = setInterval(() => nextSpeaker(1), 10000);
-      } else {
-        clearInterval(autoSlide);
-      }
-    }
+function startAutoSlide() {
+  clearInterval(autoSlide);
+  if (window.innerWidth < 768) {
+    autoSlide = setInterval(() => slideSpeakers(1), 10000);
+  }
+}
 
-    leftBtn?.addEventListener('click', () => nextSpeaker(-1));
-    rightBtn?.addEventListener('click', () => nextSpeaker(1));
-    window.addEventListener('resize', startAutoSlide);
+showSpeaker(0);
+startAutoSlide();
+window.addEventListener('resize', startAutoSlide);
 
-    showSpeaker(0);
-    startAutoSlide();
 
     // --- Optional parallax for stickers (cosmetic) ---
     document.addEventListener('mousemove', e => {
