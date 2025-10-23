@@ -523,43 +523,69 @@
       setTimeout(() => t.classList.remove('show'), 3200);
     }
 
-    // --- Mobile speaker slider (auto + manual) ---
-const speakers = document.querySelectorAll('#speakers .speaker-card');
+    // --- Mobile Speaker Slider (auto + swipe + manual) ---
+const speakerCards = document.querySelectorAll('#speakers .speaker-card');
 let currentSpeaker = 0;
-let autoSlideInterval;
+let autoSlide;
 
 function showSpeaker(index) {
-  speakers.forEach((speaker, i) => {
+  speakerCards.forEach((card, i) => {
     if (window.innerWidth < 768) {
-      speaker.style.display = i === index ? 'block' : 'none';
+      card.style.display = i === index ? 'block' : 'none';
     } else {
-      speaker.style.display = 'block';
+      card.style.display = 'block';
     }
   });
 }
 
 function nextSpeaker() {
-  currentSpeaker = (currentSpeaker + 1) % speakers.length;
+  currentSpeaker = (currentSpeaker + 1) % speakerCards.length;
+  showSpeaker(currentSpeaker);
+}
+
+function prevSpeaker() {
+  currentSpeaker = (currentSpeaker - 1 + speakerCards.length) % speakerCards.length;
   showSpeaker(currentSpeaker);
 }
 
 function startAutoSlide() {
-  clearInterval(autoSlideInterval);
+  clearInterval(autoSlide);
   if (window.innerWidth < 768) {
-    autoSlideInterval = setInterval(nextSpeaker, 15000); // каждые 15 секунд
+    autoSlide = setInterval(nextSpeaker, 15000);
   }
 }
 
-// стрелки (если добавишь кнопки потом)
-function slideSpeakers(dir) {
-  currentSpeaker = (currentSpeaker + dir + speakers.length) % speakers.length;
-  showSpeaker(currentSpeaker);
-  startAutoSlide();
+// Swipe detection
+let touchStartX = 0;
+let touchEndX = 0;
+
+function handleTouchStart(e) {
+  touchStartX = e.changedTouches[0].screenX;
 }
 
+function handleTouchEnd(e) {
+  touchEndX = e.changedTouches[0].screenX;
+  handleGesture();
+}
+
+function handleGesture() {
+  if (window.innerWidth >= 768) return; // только для мобильных
+  const diff = touchStartX - touchEndX;
+  if (Math.abs(diff) > 50) { // минимальное движение для слайда
+    if (diff > 0) nextSpeaker();
+    else prevSpeaker();
+  }
+}
+
+// Инициализация
 showSpeaker(0);
 startAutoSlide();
 window.addEventListener('resize', startAutoSlide);
+
+// Привязка свайпа
+const speakersSection = document.getElementById('speakers');
+speakersSection.addEventListener('touchstart', handleTouchStart, false);
+speakersSection.addEventListener('touchend', handleTouchEnd, false);
 
   </script>
 
