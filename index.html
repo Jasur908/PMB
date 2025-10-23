@@ -327,21 +327,6 @@
       </div>
     </div>
 
-    <!-- Индикаторы -->
-    <div class="flex justify-center mt-5 space-x-2 md:hidden">
-      <span class="dot w-3 h-3 rounded-full bg-indigo-300 transition-all duration-500"></span>
-      <span class="dot w-3 h-3 rounded-full bg-indigo-300 transition-all duration-500"></span>
-      <span class="dot w-3 h-3 rounded-full bg-indigo-300 transition-all duration-500"></span>
-      <span class="dot w-3 h-3 rounded-full bg-indigo-300 transition-all duration-500"></span>
-      <span class="dot w-3 h-3 rounded-full bg-indigo-300 transition-all duration-500"></span>
-    </div>
-            <!-- arrows (mobile only via CSS) -->
-            <button id="prevBtn" class="slider-btn left" aria-label="Previous">&#10094;</button>
-            <button id="nextBtn" class="slider-btn right" aria-label="Next">&#10095;</button>
-          </div>
-    
-          <!-- dots for mobile -->
-          <div id="sliderDots" class="slider-dots" aria-hidden="false"></div>
 
     <p class="text-gray-500 text-center mt-10 italic fade-in">
       More inspiring guest speakers will be joining soon!
@@ -537,239 +522,82 @@
       setTimeout(() => t.classList.remove('show'), 3200);
     }
 
-  // --- Уменьшаем фото для мобильной версии ---
-const style = document.createElement("style");
-style.textContent = `
+    // --- Уменьшаем фото для мобильной версии ---
+    const style = document.createElement("style");
+    style.textContent = `
 @media (max-width: 767px) {
   #speakers .speaker-card img {
     height: 260px !important;
     object-fit: cover;
   }
 }`;
-document.head.appendChild(style);
+    document.head.appendChild(style);
 
-// --- JS слайдер для мобильных (авто 10 сек + свайп) ---
-const speakerCards = document.querySelectorAll('#speakers .speaker-card');
-let currentSpeaker = 0;
-let autoSlide;
+    // --- JS слайдер для мобильных (авто 10 сек + свайп) ---
+    const speakerCards = document.querySelectorAll('#speakers .speaker-card');
+    let currentSpeaker = 0;
+    let autoSlide;
 
-function showSpeaker(index) {
-  speakerCards.forEach((card, i) => {
-    if (window.innerWidth < 768) {
-      card.style.display = i === index ? 'block' : 'none';
-    } else {
-      card.style.display = 'block';
+    function showSpeaker(index) {
+      speakerCards.forEach((card, i) => {
+        if (window.innerWidth < 768) {
+          card.style.display = i === index ? 'block' : 'none';
+        } else {
+          card.style.display = 'block';
+        }
+      });
     }
-  });
-}
 
-function nextSpeaker() {
-  currentSpeaker = (currentSpeaker + 1) % speakerCards.length;
-  showSpeaker(currentSpeaker);
-}
+    function nextSpeaker() {
+      currentSpeaker = (currentSpeaker + 1) % speakerCards.length;
+      showSpeaker(currentSpeaker);
+    }
 
-function prevSpeaker() {
-  currentSpeaker = (currentSpeaker - 1 + speakerCards.length) % speakerCards.length;
-  showSpeaker(currentSpeaker);
-}
+    function prevSpeaker() {
+      currentSpeaker = (currentSpeaker - 1 + speakerCards.length) % speakerCards.length;
+      showSpeaker(currentSpeaker);
+    }
 
-function startAutoSlide() {
-  clearInterval(autoSlide);
-  if (window.innerWidth < 768) {
-    autoSlide = setInterval(nextSpeaker, 10000); // 10 секунд
-  }
-}
-
-// --- Swipe (для ручного листания) ---
-let touchStartX = 0;
-let touchEndX = 0;
-
-function handleTouchStart(e) {
-  touchStartX = e.changedTouches[0].screenX;
-}
-
-function handleTouchEnd(e) {
-  touchEndX = e.changedTouches[0].screenX;
-  handleGesture();
-}
-
-function handleGesture() {
-  if (window.innerWidth >= 768) return;
-  const diff = touchStartX - touchEndX;
-  if (Math.abs(diff) > 50) {
-    if (diff > 0) nextSpeaker();
-    else prevSpeaker();
-  }
-}
-
-// --- Инициализация ---
-document.addEventListener('DOMContentLoaded', () => {
-  showSpeaker(0);
-  startAutoSlide();
-
-  window.addEventListener('resize', startAutoSlide);
-
-  const speakersSection = document.getElementById('speakers');
-  speakersSection.addEventListener('touchstart', handleTouchStart, false);
-  speakersSection.addEventListener('touchend', handleTouchEnd, false);
-});
-    // Mobile speaker slider logic
-    // -------------------------------
-    (function () {
-      const track = document.getElementById('speakerTrack');
-      const cards = Array.from(track.querySelectorAll('.speaker-card'));
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-      const dotsContainer = document.getElementById('sliderDots');
-
-      let current = 0;
-      let autoSlide = null;
-      const AUTOPLAY_MS = 5000; // 5 seconds autoplay (change if you want)
-
-      // Create dots (one per card)
-      function createDots() {
-        dotsContainer.innerHTML = '';
-        cards.forEach((_, idx) => {
-          const dot = document.createElement('button');
-          dot.type = 'button';
-          dot.className = 'dot';
-          dot.setAttribute('aria-label', `Show speaker ${idx + 1}`);
-          dot.addEventListener('click', () => {
-            goTo(idx);
-            restartAutoplay();
-          });
-          dotsContainer.appendChild(dot);
-        });
+    function startAutoSlide() {
+      clearInterval(autoSlide);
+      if (window.innerWidth < 768) {
+        autoSlide = setInterval(nextSpeaker, 10000); // 10 секунд
       }
+    }
 
-      function updateDots() {
-        const dots = Array.from(dotsContainer.children);
-        dots.forEach((d, i) => {
-          if (i === current) d.classList.add('active');
-          else d.classList.remove('active');
-        });
+    // --- Swipe (для ручного листания) ---
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function handleTouchStart(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }
+
+    function handleTouchEnd(e) {
+      touchEndX = e.changedTouches[0].screenX;
+      handleGesture();
+    }
+
+    function handleGesture() {
+      if (window.innerWidth >= 768) return;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) nextSpeaker();
+        else prevSpeaker();
       }
+    }
 
-      // Apply transform for mobile only
-      function applyPosition() {
-        if (window.innerWidth < 768) {
-          const viewportWidth = document.querySelector('.speaker-viewport').clientWidth;
-          // cards are centered with side padding; compute shift by current * viewportWidth
-          const shift = current * (viewportWidth);
-          track.style.transform = `translateX(-${shift}px)`;
-        } else {
-          track.style.transform = 'none';
-        }
-      }
+    // --- Инициализация ---
+    document.addEventListener('DOMContentLoaded', () => {
+      showSpeaker(0);
+      startAutoSlide();
 
-      function goTo(index) {
-        current = (index + cards.length) % cards.length;
-        applyPosition();
-        updateDots();
-      }
+      window.addEventListener('resize', startAutoSlide);
 
-      function next() {
-        goTo(current + 1);
-      }
-
-      function prev() {
-        goTo(current - 1);
-      }
-
-      // autoplay
-      function startAutoplay() {
-        stopAutoplay();
-        if (window.innerWidth < 768) {
-          autoSlide = setInterval(() => next(), AUTOPLAY_MS);
-        }
-      }
-      function stopAutoplay() {
-        if (autoSlide) {
-          clearInterval(autoSlide);
-          autoSlide = null;
-        }
-      }
-      function restartAutoplay() {
-        stopAutoplay();
-        startAutoplay();
-      }
-
-      // touch / swipe support
-      let touchStartX = 0;
-      let touchEndX = 0;
-      const threshold = 40; // px needed to consider a swipe
-
-      track.addEventListener('touchstart', (e) => {
-        if (e.touches && e.touches.length === 1) {
-          touchStartX = e.touches[0].clientX;
-          stopAutoplay();
-        }
-      }, { passive: true });
-
-      track.addEventListener('touchmove', (e) => {
-        if (e.touches && e.touches.length === 1) {
-          touchEndX = e.touches[0].clientX;
-        }
-      }, { passive: true });
-
-      track.addEventListener('touchend', () => {
-        const diff = touchEndX - touchStartX;
-        if (Math.abs(diff) > threshold) {
-          if (diff < 0) next();
-          else prev();
-        }
-        restartAutoplay();
-      });
-
-      // mouse dragging for desktop (optional, harmless)
-      let isDown = false;
-      let startX = 0;
-      let scrollLeft = 0;
-      track.addEventListener('mousedown', (e) => {
-        isDown = true;
-        startX = e.pageX - track.offsetLeft;
-        track.style.cursor = 'grabbing';
-      });
-      window.addEventListener('mouseup', () => {
-        isDown = false;
-        track.style.cursor = 'default';
-      });
-
-      // Buttons
-      if (nextBtn) nextBtn.addEventListener('click', () => { next(); restartAutoplay(); });
-      if (prevBtn) prevBtn.addEventListener('click', () => { prev(); restartAutoplay(); });
-
-      // Resize handler to re-position track and start/stop autoplay
-      window.addEventListener('resize', () => {
-        applyPosition();
-        startAutoplay();
-      });
-
-      // Init
-      createDots();
-      goTo(0);
-      startAutoplay();
-
-      // Make sure track width equals sum of visible widths (helps exact pixel shifting)
-      function refreshTrackSizing() {
-        // set each card width equal to viewport width (mobile) so translate math is simple
-        if (window.innerWidth < 768) {
-          const viewportWidth = document.querySelector('.speaker-viewport').clientWidth;
-          cards.forEach(card => {
-            card.style.width = `${viewportWidth}px`;
-          });
-        } else {
-          cards.forEach(card => {
-            card.style.width = '';
-          });
-          track.style.transform = 'none';
-        }
-      }
-
-      // run sizing once and on resize
-      refreshTrackSizing();
-      window.addEventListener('resize', refreshTrackSizing);
-    })();
+      const speakersSection = document.getElementById('speakers');
+      speakersSection.addEventListener('touchstart', handleTouchStart, false);
+      speakersSection.addEventListener('touchend', handleTouchEnd, false);
+    });
 
   </script>
 
